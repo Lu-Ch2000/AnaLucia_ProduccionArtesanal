@@ -1,0 +1,7 @@
+Sitio web de Ana Lucia
+
+index.html = la pagina
+img/ = las fotos y el logo
+
+Para agregar un producto, buscar en index.html la lista que empieza con 'var PRODUCTOS=[' y copiar un bloque existente.
+Las fotos nuevas van en la carpeta img/ (formato .jpg, de unos 800 px de ancho).

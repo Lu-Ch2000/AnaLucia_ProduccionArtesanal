@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Ana Lucía, producción artesanal en San Luis Capital: alfajores santafesinos, tartas, focaccia y mucho más. Pedidos por WhatsApp.">
+<title>Ana Lucía Artesanal</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Lora:wght@400;500;600&family=Pinyon+Script&display=swap">
+<style>
+/* Layout: barra lateral fija con botones apilados a la izquierda; a la derecha una sola página que baja por secciones (Inicio con la foto de fondo, Productos, Sobre nosotros, Cómo pedir, Contacto). En celular la barra pasa a ser un encabezado con menú desplegable. */
+:root{
+  --rojo:#B02417;
+  --rojo-hondo:#8C1A10;
+  --crema:#F6DFA6;
+  --dorado:#C9A24B;
+  --dorado-texto:#855F14;
+  --marfil:#FFF8EA;
+  --blanco:#FFFFFF;
+  --choco:#3B2A20;
+  --choco-suave:#6B5647;
+  --linea:#E9DDBF;
+  --f-titulo:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --f-cuerpo:"Lora",Georgia,"Times New Roman",serif;
+  --f-firma:"Pinyon Script","Snell Roundhand",cursive;
+  --side:250px;
+  color-scheme:light;
+}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--blanco);color:var(--choco);font-family:var(--f-cuerpo);font-size:17px;line-height:1.65}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--blanco);z-index:60}
+h1,h2,h3{font-family:var(--f-titulo);font-weight:600;line-height:1.1;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--dorado);outline-offset:2px}
+
+/* ---------- Barra lateral ---------- */
+.side{position:fixed;left:0;top:0;bottom:0;width:var(--side);background:var(--marfil);border-right:1px solid var(--linea);display:flex;flex-direction:column;align-items:stretch;gap:22px;padding:26px 20px;overflow-y:auto;z-index:50}
+.marca{display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none}
+.marca img{width:150px;height:150px;display:block}
+.menu-toggle{display:none}
+.menu{display:flex;flex-direction:column;gap:10px}
+.nav{display:block;text-align:center;text-decoration:none;background:var(--rojo);color:var(--crema);font-family:var(--f-titulo);font-weight:600;font-size:1.25rem;letter-spacing:.02em;padding:11px 14px;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(246,223,166,.55);transition:background .2s}
+.nav:hover{background:var(--rojo-hondo)}
+.nav[aria-current="true"]{background:var(--rojo-hondo);box-shadow:inset 0 0 0 1px var(--crema),0 0 0 2px var(--dorado)}
+.nav-pedido{display:flex;justify-content:center;align-items:center;gap:8px;background:var(--crema);color:var(--rojo-hondo);box-shadow:inset 0 0 0 1px var(--dorado)}
+.nav-pedido:hover{background:#efd38a}
+.cuenta{display:inline-grid;place-items:center;min-width:1.5em;height:1.5em;padding:0 .35em;border-radius:99px;background:var(--rojo);color:var(--crema);font-family:var(--f-cuerpo);font-size:.8rem;font-weight:600}
+.side-pie{margin-top:auto;font-size:.88rem;color:var(--choco-suave);text-align:center;line-height:1.5}
+.side-pie a{color:var(--rojo);font-weight:500}
+
+/* ---------- Estructura general ---------- */
+main{margin-left:var(--side)}
+.wrap{max-width:1040px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+.wrap-int{padding-inline:clamp(0px,2vw,24px)}
+section{scroll-margin-top:0}
+.banda{padding-block:clamp(56px,8vw,96px)}
+.banda-marfil{background:var(--marfil)}
+.etiqueta{font-size:.8rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--dorado-texto)}
+.titulo{font-size:clamp(2.2rem,4.5vw,3.2rem);color:var(--rojo);margin-top:10px}
+.intro{max-width:60ch;color:var(--choco-suave);margin-top:14px}
+.adorno{display:flex;align-items:center;gap:12px;margin-top:20px;color:var(--dorado)}
+.adorno::before,.adorno::after{content:"";height:1px;width:56px;background:var(--dorado)}
+.adorno svg{width:18px;height:18px}
+
+/* ---------- Inicio ---------- */
+.hero{position:relative;background:var(--rojo-hondo) url("img/fondo.jpg") center 60%/cover no-repeat;color:var(--crema);isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(110,18,10,.92) 0%,rgba(110,18,10,.72) 45%,rgba(110,18,10,.18) 100%)}
+.hero .wrap{padding-block:clamp(72px,13vw,170px)}
+.hero .etiqueta{color:var(--crema);opacity:.9}
+.hero h1{font-size:clamp(2.6rem,6.4vw,4.8rem);margin-top:14px;max-width:14ch;color:#fff}
+.hero p.sub{max-width:46ch;margin-top:20px;font-size:1.12rem;color:#FBEFCF}
+.firma{font-family:var(--f-firma);font-weight:400;color:var(--crema)}
+.hero .firma{display:block;font-size:clamp(2rem,4vw,2.8rem);margin-top:6px;line-height:1.2}
+.acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--f-titulo);font-weight:700;font-size:1.2rem;letter-spacing:.02em;text-decoration:none;padding:12px 26px;border-radius:3px;border:1px solid transparent;cursor:pointer;transition:background .2s,color .2s}
+.btn-crema{background:var(--crema);color:var(--rojo-hondo)}
+.btn-crema:hover{background:#fff}
+.btn-linea{border-color:var(--crema);color:var(--crema);background:transparent}
+.btn-linea:hover{background:rgba(246,223,166,.16)}
+.btn-rojo{background:var(--rojo);color:var(--crema);box-shadow:inset 0 0 0 1px rgba(246,223,166,.5)}
+.btn-rojo:hover{background:var(--rojo-hondo)}
+.btn[aria-disabled="true"],.btn:disabled{opacity:.45;pointer-events:none}
+.horario{margin-top:26px;font-size:.95rem;color:#FBEFCF}
+
+/* ---------- Productos ---------- */
+.grilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:26px;margin-top:40px}
+.prod{display:flex;flex-direction:column;background:var(--blanco);border:1px solid var(--linea);border-radius:4px;overflow:hidden}
+.prod figure{margin:0;aspect-ratio:4/5;background:var(--marfil);overflow:hidden}
+.prod img{width:100%;height:100%;object-fit:cover;display:block}
+.prod-cuerpo{padding:18px 18px 20px;display:flex;flex-direction:column;gap:12px;flex:1}
+.prod h3{font-size:1.7rem;color:var(--rojo)}
+.prod .var{font-style:italic;font-family:var(--f-titulo);font-size:1.2rem;color:var(--dorado-texto);margin-top:-6px}
+.precios{display:flex;flex-direction:column;gap:8px;margin-top:auto}
+.fila{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;column-gap:8px}
+.fila .et{font-size:.98rem}
+.fila .punt{border-bottom:2px dotted #CDB27A;height:1px;transform:translateY(5px)}
+.fila .pr{font-weight:600;color:var(--rojo);font-variant-numeric:tabular-nums}
+.paso{display:inline-flex;align-items:center;gap:2px;margin-left:6px}
+.paso button{width:30px;height:30px;border-radius:50%;border:1px solid var(--dorado);background:var(--blanco);color:var(--rojo);font-size:1.1rem;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
+.paso button:hover{background:var(--crema)}
+.paso output{min-width:1.7em;text-align:center;font-variant-numeric:tabular-nums;font-weight:600}
+.paso output.cero{color:#B9A98B;font-weight:400}
+.nota-precios{margin-top:26px;font-size:.92rem;color:var(--choco-suave)}
+.nota-precios.nota-prox{margin-top:6px;font-style:italic}
+
+/* ---------- Sobre nosotros ---------- */
+.nosotros{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center}
+.nosotros p+p{margin-top:16px}
+.nosotros .texto{min-width:0}
+.nosotros .texto p{max-width:56ch}
+.foto-nos{margin:0;border:1px solid var(--linea);padding:10px;background:var(--blanco);border-radius:4px;min-width:0}
+.foto-nos img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:42% 70%;border-radius:2px}
+.firma-grande{font-family:var(--f-firma);font-size:2.4rem;color:var(--rojo);margin-top:18px;line-height:1.1}
+
+/* ---------- Cómo pedir ---------- */
+.pedir{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,56px);margin-top:40px;align-items:start}
+.pasos{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:22px;min-width:0}
+.pasos li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.pasos .n{width:44px;height:44px;border-radius:50%;background:var(--rojo);color:var(--crema);font-family:var(--f-titulo);font-weight:700;font-size:1.5rem;display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--crema),0 0 0 2px var(--dorado)}
+.pasos h3{font-size:1.4rem;color:var(--rojo);margin-bottom:2px}
+.pasos p{font-size:.98rem;color:var(--choco-suave)}
+.retiro{margin-top:30px;display:flex;flex-direction:column;gap:14px}
+.retiro div{border-left:3px solid var(--dorado);padding:2px 0 2px 14px}
+.retiro b{display:block;font-family:var(--f-titulo);font-size:1.25rem;color:var(--rojo)}
+.retiro span{font-size:.97rem;color:var(--choco-suave)}
+.ticket{background:var(--blanco);border:1px solid var(--dorado);border-radius:4px;padding:26px;min-width:0;box-shadow:0 0 0 5px var(--blanco)}
+.ticket h3{font-size:1.9rem;color:var(--rojo)}
+.lineas{list-style:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column}
+.lineas li{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:10px 0;border-bottom:1px dotted #CDB27A;font-size:.97rem}
+.lineas .sub{grid-column:1;font-size:.85rem;color:var(--choco-suave)}
+.lineas .imp{font-weight:600;font-variant-numeric:tabular-nums}
+.vacio{color:var(--choco-suave);padding:16px 0 4px;font-size:.97rem}
+.vacio a{color:var(--rojo);font-weight:600}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;font-family:var(--f-titulo);font-size:1.6rem;font-weight:700;color:var(--rojo)}
+.campos{display:grid;gap:14px;margin-top:22px}
+.campo{display:flex;flex-direction:column;gap:5px;min-width:0}
+.campo label,.campo legend{font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--dorado-texto);padding:0}
+.campo input[type=text],.campo input[type=date],.campo textarea,.campo select{font:inherit;font-size:1rem;color:var(--choco);background:var(--blanco);border:1px solid #D8C799;border-radius:3px;padding:10px 12px;width:100%;min-width:0}
+.campo textarea{resize:vertical;min-height:70px}
+fieldset.campo{border:0;margin:0;padding:0}
+.campo label.opc{text-transform:none;letter-spacing:0;font-weight:400;font-size:.96rem;color:var(--choco)}
+.opc{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;padding:10px 12px;border:1px solid #D8C799;border-radius:3px;cursor:pointer;margin-top:6px;font-size:.96rem}
+.opc input{margin:4px 0 0;accent-color:var(--rojo);width:18px;height:18px}
+.opc small{display:block;color:var(--choco-suave);font-size:.86rem}
+.opc:has(input:checked){background:var(--marfil);border-color:var(--rojo)}
+.envio{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.envio .btn{flex:1 1 220px}
+.aviso{margin-top:14px;font-size:.88rem;color:var(--choco-suave)}
+.sena{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;font-size:1rem;color:var(--dorado-texto);font-weight:600}
+.sena #sena{font-variant-numeric:tabular-nums}
+.ayuda{font-size:.84rem;color:var(--choco-suave);line-height:1.4}
+.ayuda.error{color:var(--rojo);font-weight:600}
+.ig{display:inline-flex;align-items:center;gap:.4em;vertical-align:middle}
+.ig img{height:1.15em;width:1.15em;display:block;flex:none}
+.estado{margin-top:10px;font-size:.9rem;color:var(--rojo);min-height:1.4em}
+
+/* ---------- Contacto ---------- */
+.contacto{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:38px}
+.dato{border:1px solid var(--linea);background:var(--blanco);border-radius:4px;padding:22px;min-width:0}
+.dato h3{font-size:1.5rem;color:var(--rojo);margin-bottom:8px}
+.dato p{font-size:.98rem;color:var(--choco-suave)}
+.dato .num{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 12px;margin-top:10px;color:var(--choco)}
+.dato .num strong{font-weight:600;font-variant-numeric:tabular-nums}
+.dato a.enlace{color:var(--rojo);font-weight:600}
+.copiar{font:inherit;font-size:.82rem;font-weight:600;color:var(--rojo);background:transparent;border:1px solid var(--dorado);border-radius:3px;padding:3px 10px;cursor:pointer}
+.copiar:hover{background:var(--crema)}
+
+footer{background:var(--rojo-hondo);color:var(--crema);text-align:center}
+footer .wrap{padding-block:34px;display:flex;flex-direction:column;align-items:center;gap:10px}
+footer img{width:84px;height:84px}
+footer small{font-size:.88rem;opacity:.9}
+footer a{color:var(--crema)}
+
+/* ---------- Botón flotante del pedido ---------- */
+.flota{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;display:inline-flex;align-items:center;gap:10px;background:var(--rojo);color:var(--crema);text-decoration:none;font-family:var(--f-titulo);font-weight:700;font-size:1.15rem;padding:11px 20px;border-radius:99px;box-shadow:inset 0 0 0 1px rgba(246,223,166,.6),0 6px 18px rgba(80,15,8,.35)}
+.flota:hover{background:var(--rojo-hondo)}
+
+/* ---------- Celular y pantallas angostas ---------- */
+@media (max-width:880px){
+  html{scroll-padding-top:76px}
+  .side{position:sticky;top:env(safe-area-inset-top,0px);bottom:auto;width:100%;flex-direction:column;gap:0;padding:0;overflow:visible;border-right:0;border-bottom:1px solid var(--linea)}
+  .barra{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px max(16px,env(safe-area-inset-right,0px)) 8px max(16px,env(safe-area-inset-left,0px))}
+  .marca{flex-direction:row;gap:10px}
+  .marca img{width:54px;height:54px}
+  .menu-toggle{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-titulo);font-weight:700;font-size:1.15rem;background:var(--rojo);color:var(--crema);border:0;border-radius:3px;padding:10px 16px;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(246,223,166,.55)}
+  .menu{display:none;padding:4px max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px));max-height:calc(100vh - 90px);overflow-y:auto}
+  .side.abierto .menu{display:flex}
+  .side-pie{display:none}
+  main{margin-left:0}
+  .nosotros,.pedir{grid-template-columns:1fr}
+  .hero::before{background:linear-gradient(180deg,rgba(110,18,10,.86) 0%,rgba(110,18,10,.78) 100%)}
+  .ticket{padding:20px}
+}
+@media (min-width:881px){.barra{display:contents}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+
+<style>[hidden]{display:none!important}img{max-width:100%}</style>
+</head>
+<body>
+<aside class="side" id="side">
+  <div class="barra">
+    <a class="marca" href="#inicio" aria-label="Ana Lucía, producción artesanal. Ir al inicio">
+      <img src="img/logo.png" alt="Logo Ana Lucía, producción artesanal" width="150" height="150">
+    </a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+  </div>
+  <nav class="menu" id="menu" aria-label="Secciones">
+    <a class="nav" href="#inicio">Inicio</a>
+    <a class="nav" href="#productos">Productos</a>
+    <a class="nav" href="#como-pedir">Cómo pedir</a>
+    <a class="nav" href="#nosotros">Sobre nosotros</a>
+    <a class="nav" href="#contacto">Contacto</a>
+    <a class="nav nav-pedido" href="#pedido">Mi pedido <span class="cuenta" id="cuentaMenu">0</span></a>
+  </nav>
+  <div class="side-pie">
+    San Luis, Capital<br>
+    Atención de 10 a 20 hs<br>
+    <a class="ig" href="https://www.instagram.com/ana_lucia_artesanal/" target="_blank" rel="noopener"><img src="img/instagram.png" alt="" width="96" height="96">@ana_lucia_artesanal</a>
+  </div>
+</aside>
+
+<main>
+  <!-- INICIO -->
+  <section id="inicio" class="hero" aria-label="Inicio">
+    <div class="wrap">
+      <p class="etiqueta">Producción artesanal · San Luis Capital</p>
+      <h1>Recetas de familia que llegan a San Luis</h1>
+      <span class="firma">Ana Lucía</span>
+      <p class="sub">Alfajores santafesinos, tartas, focaccia y mucho más. Elaborados a mano, por encargo, por una familia que cocina lo que más le gusta.</p>
+      <div class="acciones">
+        <a class="btn btn-crema" href="#productos">Ver productos</a>
+        <a class="btn btn-linea" href="#como-pedir">Cómo pedir</a>
+      </div>
+      <p class="horario">Recibimos pedidos de 10 a 20 hs.</p>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section id="productos" class="banda">
+    <div class="wrap">
+      <p class="etiqueta">Lo que elaboramos</p>
+      <h2 class="titulo">Productos</h2>
+      <p class="intro">Elegí las cantidades directamente en cada producto. Después revisás tu pedido en la sección <a href="#pedido" style="color:var(--rojo);font-weight:600">Mi pedido</a> y lo enviás por WhatsApp.</p>
+      <div class="grilla" id="grilla"></div>
+      <p class="nota-precios">Precios en pesos argentinos, vigentes al momento de publicar esta página.</p>
+      <p class="nota-precios nota-prox">¡Próximamente más productos para disfrutar!</p>
+    </div>
+  </section>
+
+  <!-- CÓMO PEDIR -->
+  <section id="como-pedir" class="banda banda-marfil">
+    <div class="wrap">
+      <p class="etiqueta">Pedidos y entrega</p>
+      <h2 class="titulo">Cómo pedir</h2>
+      <div class="pedir">
+        <div>
+          <ol class="pasos">
+            <li><span class="n">1</span><div><h3>Elegí tus productos</h3><p>En la sección Productos sumá las cantidades que quieras.</p></div></li>
+            <li><span class="n">2</span><div><h3>Completá tu pedido</h3><p>Anotá tu nombre, elegí en el calendario el día que lo necesitás y cómo querés recibirlo. Hacemos pedidos con 2 días de anticipación como mínimo.</p></div></li>
+            <li><span class="n">3</span><div><h3>Envialo por WhatsApp</h3><p>Se abre WhatsApp con el mensaje armado. Te confirmamos el pedido por ahí.</p></div></li>
+            <li><span class="n">4</span><div><h3>Abonás la seña</h3><p>Para agendar tu pedido se requiere una seña del 50% del total. Coordinamos la forma de pago por WhatsApp.</p></div></li>
+          </ol>
+          <div class="retiro">
+            <div><b>Retiro en sucursal</b><span>25 de Agosto Este 765, San Luis Capital.</span></div>
+            <div><b>Punto de encuentro</b><span>Plaza Pringles, en el reloj, frente a Correo Argentino.</span></div>
+          </div>
+        </div>
+
+        <div class="ticket" id="pedido">
+          <h3>Mi pedido</h3>
+          <ul class="lineas" id="lineas" aria-live="polite"></ul>
+          <div class="total" id="totalWrap"><span>Total</span><span id="total">$0</span></div>
+          <div class="sena"><span>Seña del 50% para agendar</span><span id="sena">$0</span></div>
+
+          <div class="campos">
+            <div class="campo">
+              <label for="nombre">Tu nombre</label>
+              <input type="text" id="nombre" autocomplete="name" placeholder="Nombre y apellido">
+            </div>
+            <fieldset class="campo">
+              <legend>Cómo lo recibís</legend>
+              <label class="opc"><input type="radio" name="entrega" value="sucursal" checked><span>Retiro en sucursal<small>25 de Agosto Este 765</small></span></label>
+              <label class="opc"><input type="radio" name="entrega" value="encuentro"><span>Punto de encuentro<small>Plaza Pringles, en el reloj, frente a Correo Argentino</small></span></label>
+            </fieldset>
+            <div class="campo">
+              <label for="fecha">Fecha de entrega</label>
+              <input type="date" id="fecha">
+              <small class="ayuda" id="ayudaFecha">Elegí el día en el calendario. Pedidos con 2 días de anticipación como mínimo.</small>
+            </div>
+            <div class="campo">
+              <label for="hora">Horario aproximado</label>
+              <select id="hora">
+                <option value="">A coordinar</option>
+                <option>10:00 hs</option><option>11:00 hs</option><option>12:00 hs</option><option>13:00 hs</option><option>14:00 hs</option><option>15:00 hs</option><option>16:00 hs</option><option>17:00 hs</option><option>18:00 hs</option><option>19:00 hs</option><option>20:00 hs</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="notas">Aclaraciones (opcional)</label>
+              <textarea id="notas" placeholder="Alergias, dedicatoria, lo que quieras avisarnos"></textarea>
+            </div>
+            <div class="campo">
+              <label for="quien">Enviar el pedido a</label>
+              <select id="quien">
+                <option value="5492664504912">Lu · 266 450 4912</option>
+                <option value="5492664320491">Ana · 266 432 0491</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="envio">
+            <a class="btn btn-rojo" id="enviar" href="#pedido" target="_blank" rel="noopener" aria-disabled="true">Enviar por WhatsApp</a>
+            <button class="btn btn-linea" id="copiarPedido" type="button" style="color:var(--rojo);border-color:var(--dorado)">Copiar pedido</button>
+          </div>
+          <p class="estado" id="estado" role="status"></p>
+          <p class="aviso">Para agendar el pedido se requiere una seña del 50% del total. Queda confirmado cuando te respondemos por WhatsApp. Estamos atentas de 10 a 20 hs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE NOSOTROS -->
+  <section id="nosotros" class="banda">
+    <div class="wrap">
+      <div class="nosotros">
+        <div class="texto">
+          <p class="etiqueta">Nuestra historia</p>
+          <h2 class="titulo">Sobre nosotros</h2>
+          <div class="adorno" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.2 9.8L24 12l-9.8 2.2L12 24l-2.2-9.8L0 12l9.8-2.2z"/></svg></div>
+          <p style="margin-top:22px">Traemos a San Luis recetas familiares clásicas y algunos manjares poco conocidos en la localidad.</p>
+          <p>Somos una familia oriunda de Santa Fe que quiere salir adelante haciendo lo que más le gusta: cocinar. Cada alfajor, cada tarta y cada focaccia se elabora a mano y por encargo, con las recetas que se heredan en casa.</p>
+          <p class="firma-grande">Ana Lucía</p>
+        </div>
+        <figure class="foto-nos">
+          <img src="img/fondo.jpg" alt="Mesada con tarta Kabsha, lemon pie, focaccia, budín y alfajores recién hechos" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="banda banda-marfil">
+    <div class="wrap">
+      <p class="etiqueta">Hablemos</p>
+      <h2 class="titulo">Contacto</h2>
+      <div class="contacto">
+        <div class="dato">
+          <h3>WhatsApp</h3>
+          <p>Escribinos por cualquier duda o consulta. Estamos atentas de 10 a 20 hs.</p>
+          <div class="num"><span>Lu: <strong>266 450 4912</strong></span><button class="copiar" type="button" data-copiar="2664504912">Copiar</button></div>
+          <div class="num"><span>Ana: <strong>266 432 0491</strong></span><button class="copiar" type="button" data-copiar="2664320491">Copiar</button></div>
+        </div>
+        <div class="dato">
+          <h3>Dónde estamos</h3>
+          <p>San Luis Capital.<br>Sucursal: 25 de Agosto Este 765.</p>
+          <p style="margin-top:10px"><a class="enlace" href="https://www.google.com/maps/search/?api=1&query=25+de+Agosto+Este+765+San+Luis+Argentina" target="_blank" rel="noopener">Ver en el mapa</a></p>
+        </div>
+        <div class="dato">
+          <h3>Punto de encuentro</h3>
+          <p>Plaza Pringles, en el reloj, frente a Correo Argentino.</p>
+        </div>
+        <div class="dato">
+          <h3>Instagram</h3>
+          <p>Mirá más fotos y novedades.</p>
+          <p style="margin-top:10px"><a class="enlace ig" href="https://www.instagram.com/ana_lucia_artesanal/" target="_blank" rel="noopener"><img src="img/instagram.png" alt="" width="96" height="96">@ana_lucia_artesanal</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <img src="img/logo.png" alt="" width="84" height="84">
+      <small>Producción artesanal · San Luis Capital · Atención de 10 a 20 hs</small>
+      <small><a class="ig" href="https://www.instagram.com/ana_lucia_artesanal/" target="_blank" rel="noopener"><img src="img/instagram.png" alt="" width="96" height="96">@ana_lucia_artesanal</a></small>
+    </div>
+  </footer>
+</main>
+
+<a class="flota" id="flota" href="#pedido" hidden>Mi pedido <span class="cuenta" id="cuentaFlota">0</span> <span id="totalFlota"></span></a>
+
+<script>
+(function(){
+  var PRODUCTOS=[
+    {id:'alf-cl',nombre:'Alfajor Santafesino',sub:'Clásico',img:'img/alfajor-blanco.jpg',pos:'50% 55%',alt:'Alfajor santafesino blanco cortado, sobre alfajores envueltos',op:[['u','Unidad',2000],['m','Media docena',10800],['d','Docena',20400]]},
+    {id:'alf-ch',nombre:'Alfajor Santafesino',sub:'Cubierto de chocolate',img:'img/alfajor-chocolate.jpg',pos:'50% 50%',alt:'Alfajor santafesino cubierto de chocolate, cortado',op:[['u','Unidad',2500],['m','Media docena',15000],['d','Docena',24000]]},
+    {id:'alf-su',nombre:'Alfajor Santafesino',sub:'Surtido',img:'img/alfajor-surtido.jpg',pos:'50% 50%',alt:'Alfajor de chocolate y alfajor blanco, lado a lado',op:[['m','Media docena',13000],['d','Docena',22200]]},
+    {id:'kabsha',nombre:'Tarta Kabsha',sub:'',img:'img/tarta-kabsha.jpg',pos:'50% 50%',alt:'Tarta Kabsha con borde de dulce de leche y cobertura de chocolate',op:[['u','Completa',22500]]},
+    {id:'lemon',nombre:'Lemon Pie',sub:'',img:'img/lemon-pie.jpg',pos:'50% 55%',alt:'Lemon pie con merengue tostado, cortado',op:[['u','Completo',13000]]},
+    {id:'foca',nombre:'Focaccia',sub:'',img:'img/focaccia.jpg',pos:'50% 65%',alt:'Focaccia con tomates cherry, aceitunas y orégano',op:[['p','Porción',3000],['c','Completa',8800]]}
+  ];
+  var NUM_TEL={};
+  var carrito={};
+  var $=function(id){return document.getElementById(id)};
+  var fmt=function(n){return '$'+String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'.')};
+
+  try{var g=JSON.parse(localStorage.getItem('analucia-carrito')||'{}'); if(g&&typeof g==='object'){Object.keys(g).forEach(function(k){var q=parseInt(g[k],10); if(q>0&&q<100) carrito[k]=q;});}}catch(e){}
+  function guardar(){try{localStorage.setItem('analucia-carrito',JSON.stringify(carrito))}catch(e){}}
+
+  function precio(id,k){var p=PRODUCTOS.filter(function(x){return x.id===id})[0]; if(!p) return null; var o=p.op.filter(function(x){return x[0]===k})[0]; return o?{p:p,o:o}:null;}
+
+  // Tarjetas de producto
+  var grilla=$('grilla'); var html='';
+  PRODUCTOS.forEach(function(p){
+    html+='<article class="prod"><figure><img src="'+p.img+'" alt="'+p.alt+'" style="object-position:'+p.pos+'" loading="lazy"></figure><div class="prod-cuerpo"><h3>'+p.nombre+'</h3>'+(p.sub?'<p class="var">'+p.sub+'</p>':'')+'<div class="precios">';
+    p.op.forEach(function(o){
+      var key=p.id+'|'+o[0];
+      html+='<div class="fila"><span class="et">'+o[1]+'</span><span class="punt"></span><span class="pr">'+fmt(o[2])+'</span><span class="paso"><button type="button" data-k="'+key+'" data-d="-1" aria-label="Quitar uno: '+p.nombre+' '+(p.sub?p.sub+', ':'')+o[1]+'">−</button><output data-q="'+key+'" class="cero">0</output><button type="button" data-k="'+key+'" data-d="1" aria-label="Agregar uno: '+p.nombre+' '+(p.sub?p.sub+', ':'')+o[1]+'">+</button></span></div>';
+    });
+    html+='</div></div></article>';
+  });
+  grilla.innerHTML=html;
+
+  grilla.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-k]'); if(!b) return;
+    var k=b.getAttribute('data-k'), d=parseInt(b.getAttribute('data-d'),10);
+    var q=(carrito[k]||0)+d; if(q<=0) delete carrito[k]; else if(q<=99) carrito[k]=q;
+    actualizar();
+  });
+
+  function texto(){
+    var L=[],tot=0;
+    Object.keys(carrito).forEach(function(k){var a=k.split('|'),r=precio(a[0],a[1]); if(!r) return; var q=carrito[k],imp=q*r.o[2]; tot+=imp; L.push({q:q,r:r,imp:imp});});
+    var nombre=$('nombre').value.trim(), fecha=$('fecha').value, hora=$('hora').value, notas=$('notas').value.trim();
+    var m='Hola! '+(nombre?'Soy '+nombre+'. ':'')+'Quisiera hacer este pedido:\n';
+    L.forEach(function(x){m+=(x.q>1?x.q+' × ':'')+x.r.o[1]+' – '+x.r.p.nombre+(x.r.p.sub?' ('+x.r.p.sub+')':'')+': '+fmt(x.r.o[2])+(x.q>1?' x '+x.q+' = '+fmt(x.imp):'')+'\n';});
+    m+='Total: '+fmt(tot)+'\n';
+    m+='Seña del 50% para agendar: '+fmt(Math.ceil(tot/2))+'\n';
+    var ent=document.querySelector('input[name="entrega"]:checked').value;
+    m+='Entrega: '+(ent==='sucursal'?'Retiro en sucursal (25 de Agosto Este 765)':'Punto de encuentro (Plaza Pringles, en el reloj, frente a Correo Argentino)');
+    if(fecha) m+='\nFecha: '+fechaLarga(fecha)+(hora?' a las '+hora:' (horario a coordinar)');
+    if(notas) m+='\nAclaraciones: '+notas;
+    return {texto:m,total:tot,lineas:L};
+  }
+
+  // Calendario: la fecha mínima es hoy + 2 días y se recalcula cada vez que se usa
+  var DIAS=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  function dos(n){return (n<10?'0':'')+n}
+  function iso(d){return d.getFullYear()+'-'+dos(d.getMonth()+1)+'-'+dos(d.getDate())}
+  function minimo(){var d=new Date(); d.setHours(12,0,0,0); d.setDate(d.getDate()+2); return iso(d);}
+  function fechaLarga(s){var p=s.split('-'),d=new Date(+p[0],+p[1]-1,+p[2],12); return DIAS[d.getDay()]+' '+dos(+p[2])+'/'+dos(+p[1])+'/'+p[0];}
+  function aplicarMinimo(){
+    var m=minimo(), f=$('fecha'); f.min=m;
+    if(f.value&&f.value<m){f.value=''; var a=$('ayudaFecha'); a.className='ayuda error'; a.textContent='Esa fecha ya no está disponible. Elegí desde el '+fechaLarga(m)+'.';}
+    return m;
+  }
+  aplicarMinimo();
+  $('fecha').addEventListener('focus',aplicarMinimo);
+  $('fecha').addEventListener('click',aplicarMinimo);
+  $('fecha').addEventListener('change',function(){
+    var m=aplicarMinimo(), a=$('ayudaFecha');
+    if(!this.value){a.className='ayuda error'; a.textContent='Elegí una fecha desde el '+fechaLarga(m)+'.';}
+    else{a.className='ayuda'; a.textContent='Entrega: '+fechaLarga(this.value)+'.';}
+    actualizar();
+  });
+
+  function actualizar(){
+    document.querySelectorAll('output[data-q]').forEach(function(o){var q=carrito[o.getAttribute('data-q')]||0; o.textContent=q; o.className=q?'':'cero';});
+    var t=texto(), n=0; t.lineas.forEach(function(x){n+=x.q});
+    var ul=$('lineas'), h='';
+    if(!t.lineas.length){h='<li class="vacio" style="display:block;border:0">Todavía no agregaste productos. Elegilos en <a href="#productos">Productos</a>.</li>';}
+    t.lineas.forEach(function(x){h+='<li><span>'+x.q+' × '+x.r.p.nombre+(x.r.p.sub?' · '+x.r.p.sub:'')+'</span><span class="imp">'+fmt(x.imp)+'</span><span class="sub">'+x.r.o[1]+' a '+fmt(x.r.o[2])+'</span></li>';});
+    ul.innerHTML=h;
+    $('total').textContent=fmt(t.total);
+    $('sena').textContent=fmt(Math.ceil(t.total/2));
+    $('cuentaMenu').textContent=n; $('cuentaFlota').textContent=n; $('totalFlota').textContent=fmt(t.total);
+    $('flota').hidden=!n;
+    var a=$('enviar');
+    if(n){a.setAttribute('aria-disabled','false'); a.href='https://wa.me/'+$('quien').value+'?text='+encodeURIComponent(t.texto);}
+    else{a.setAttribute('aria-disabled','true'); a.href='#pedido';}
+    guardar();
+  }
+  ['nombre','notas'].forEach(function(id){$(id).addEventListener('input',actualizar)});
+  ['quien','hora'].forEach(function(id){$(id).addEventListener('change',actualizar)});
+  document.querySelectorAll('input[name="entrega"]').forEach(function(r){r.addEventListener('change',actualizar)});
+
+  $('enviar').addEventListener('click',function(e){
+    if(this.getAttribute('aria-disabled')==='true'){e.preventDefault(); $('estado').textContent='Agregá al menos un producto para armar el pedido.'; return;}
+    aplicarMinimo();
+    if(!$('nombre').value.trim()){e.preventDefault(); $('estado').textContent='Escribí tu nombre y apellido para armar el pedido.'; $('nombre').focus(); return;}
+    if(!$('fecha').value){e.preventDefault(); $('estado').textContent='Elegí la fecha de entrega en el calendario.'; $('fecha').focus(); return;}
+    $('estado').textContent='Se abrió WhatsApp en otra pestaña. Si no apareció, usá Copiar pedido y pegalo en el chat.';
+  });
+
+  function copiar(txt,cb){
+    function fallback(){var ta=document.createElement('textarea'); ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); var ok=false; try{ok=document.execCommand('copy')}catch(e){} document.body.removeChild(ta); cb(ok);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){cb(true)},fallback);}else fallback();
+  }
+  $('copiarPedido').addEventListener('click',function(){
+    var t=texto();
+    if(!t.lineas.length){$('estado').textContent='Agregá al menos un producto para copiar el pedido.'; return;}
+    if(!$('nombre').value.trim()){$('estado').textContent='Escribí tu nombre y apellido para armar el pedido.'; $('nombre').focus(); return;}
+    if(!$('fecha').value){$('estado').textContent='Elegí la fecha de entrega en el calendario.'; $('fecha').focus(); return;}
+    copiar(t.texto,function(ok){$('estado').textContent=ok?'Pedido copiado. Pegalo en el chat de WhatsApp.':'No se pudo copiar. Seleccioná y copiá el texto a mano.';});
+  });
+  document.querySelectorAll('.copiar').forEach(function(b){b.addEventListener('click',function(){
+    var el=b; copiar(el.getAttribute('data-copiar'),function(ok){var o=el.textContent; el.textContent=ok?'Copiado':'No se pudo'; setTimeout(function(){el.textContent=o},1600);});
+  });});
+
+  // Menú en celular
+  var side=$('side'), tg=$('menuToggle');
+  tg.addEventListener('click',function(){var a=side.classList.toggle('abierto'); tg.setAttribute('aria-expanded',a?'true':'false');});
+  document.querySelectorAll('.menu a').forEach(function(a){a.addEventListener('click',function(){side.classList.remove('abierto'); tg.setAttribute('aria-expanded','false');});});
+
+  // Sección activa en la barra
+  var ids=['inicio','productos','como-pedir','nosotros','contacto'];
+  var links={}; document.querySelectorAll('.menu a.nav').forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
+  function activa(){
+    var y=window.scrollY+Math.min(window.innerHeight*0.35,260), cur='inicio';
+    ids.forEach(function(id){var s=$(id); if(s&&s.getBoundingClientRect().top+window.scrollY<=y) cur=id;});
+    ids.forEach(function(id){if(links[id]) links[id].setAttribute('aria-current',id===cur?'true':'false');});
+  }
+  window.addEventListener('scroll',activa,{passive:true}); activa();
+
+  actualizar();
+})();
+</script>
+</body>
+</html>
